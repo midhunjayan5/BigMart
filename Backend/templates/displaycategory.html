@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% extends "index.html" %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="margin-left:300px;margin-right:300px;">
+    <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Condensed Full Width Table</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th>Category Name</th>
+                      <th>Description</th>
+                      <th style="width: 40px">Image</th>
+                      <th style="width: 40px">Edit</th>
+                      <th style="width: 40px">Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                            {% for i in cat %}
+                    <tr>
+
+                      <td>{{i.catname}}</td>
+                      <td>{{i.description}}</td>
+                      <td>
+                          <img src="{{i.image.url}}" alt="" style="height:100px;width:100px;">
+                      </td>
+                      <td>
+                          <form action="{% url 'editcat' catid=i.id %}">
+                              <button type="submit" class="btn btn-primary">Edit</button>
+                          </form></td>
+                      <td>
+                          <form action="{% url 'delete_cat' catid=i.id %}">
+                              <button type="submit" class="btn btn-primary">Delete</button>
+                          </form>
+                      </td>
+
+
+
+                    </tr>
+                                          {% endfor %}
+<!--                    <tr>-->
+<!--                      <td>2.</td>-->
+<!--                      <td>Clean database</td>-->
+<!--                      <td>-->
+<!--                        <div class="progress progress-xs">-->
+<!--                          <div class="progress-bar bg-warning" style="width: 70%"></div>-->
+<!--                        </div>-->
+<!--                      </td>-->
+<!--                      <td><span class="badge bg-warning">70%</span></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                      <td>3.</td>-->
+<!--                      <td>Cron job running</td>-->
+<!--                      <td>-->
+<!--                        <div class="progress progress-xs progress-striped active">-->
+<!--                          <div class="progress-bar bg-primary" style="width: 30%"></div>-->
+<!--                        </div>-->
+<!--                      </td>-->
+<!--                      <td><span class="badge bg-primary">30%</span></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                      <td>4.</td>-->
+<!--                      <td>Fix and squish bugs</td>-->
+<!--                      <td>-->
+<!--                        <div class="progress progress-xs progress-striped active">-->
+<!--                          <div class="progress-bar bg-success" style="width: 90%"></div>-->
+<!--                        </div>-->
+<!--                      </td>-->
+<!--                      <td><span class="badge bg-success">90%</span></td>-->
+<!--                    </tr>-->
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+</div>
+
+</body>
+</html>
+{% endblock %}
